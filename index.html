@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Add Bootstrap CSS link -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Add DataTables CSS link -->
+    <link href="https://cdn.datatables.net/1.11.5/css/dataTables.bootstrap5.min.css" rel="stylesheet">
+    <title>Bootstrap Table with DataTables</title>
+</head>
+
+<body>
+    <div class="container mt-4">
+        <h2 class="text-center">Sample Table with User Photos (Using DataTables)</h2>
+        <table class="table" id="userTable">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Photo</th>
+                    <th scope="col">First Name</th>
+                    <th scope="col">Last Name</th>
+                    <th scope="col">Age</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Rows will be generated dynamically using JavaScript -->
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Add Bootstrap JS and Popper.js scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Add DataTables JS and jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.11.5/js/dataTables.bootstrap5.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            var dataTable = $('#userTable').DataTable();
+
+            // Generate 100 random users
+            for (var i = 1; i <= 100; i++) {
+                var firstName = 'User' + i;
+                var lastName = 'LastName' + i;
+                var age = Math.floor(Math.random() * 40) + 18;
+                var photoUrl = 'https://via.placeholder.com/50'; // Placeholder image URL
+
+                dataTable.row.add([
+                    i,
+                    '<a href="#"><img src="' + photoUrl + '" alt="' + firstName + '" class="img-thumbnail"></a>',
+                    '<a href="#">' + firstName + '</a>',
+                    lastName,
+                    age
+                ]).draw();
+            }
+        });
+    </script>
+</body>
+
+</html>
